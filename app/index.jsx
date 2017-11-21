@@ -1,39 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Route, Router, hashHistory} from 'react-router'
+import {Route, BrowserRouter as Router, browserHistory} from 'react-router-dom'
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div>
-        <p>Welcome to Home Page</p>
-      </div>
-    )
-  }
-}
-
-class About extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div>
-        <p>Welcome to About Page</p>
-      </div>
-    )
-  }
-}
+import App from './pages/App.jsx'
+import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
 
 ReactDOM.render((
-  <Router>
-    <Route exact path='/' component={Home} />
-    <Route path='/home' component={Home} />
-    <Route path='/about' component={About} />
+  <Router history={browserHistory}>
+    <div>
+      <Route path='/' component={App} />
+      <Route exact path='/' component={Home} />
+      <Route path='/home' component={Home} />
+      <Route path='/about' component={About} />
+    </div>
   </Router>
 ), document.getElementById('root'));
