@@ -32,9 +32,8 @@ class About extends React.Component {
 
 ReactDOM.render((
   <Router>
-    <div>
-      <Route path='/home' component={Home} />
-      <Route path='/about' component={About} />
-    </div>
+    <Route exact path='/' component={Home} />
+    <Route path='/home' component={Home} />
+    <Route path='/about' component={About} />
   </Router>
 ), document.getElementById('root'));
