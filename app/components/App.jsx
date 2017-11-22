@@ -1,51 +1,36 @@
 import React from 'react'
 
-import Profile from './Profile.jsx'
-import AddProfile from './AddProfile.jsx'
-
-import {getProfiles} from '../utils/profileApi.js'
+import {incrementCount} from '../actions'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      profiles: []
+      count: props.store.getState()
     }
-    this.addUser = this.addUser.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.increment = this.increment.bind(this)
   }
 
   componentDidMount() {
-    getProfiles().then(profiles => {
-      this.setState({
-        profiles: profiles
-      })
+    this.props.store.subscribe(this.handleChange)
+  }
+
+  handleChange() {
+    this.setState({
+      count: this.props.store.getState()
     })
   }
 
-  addUser(newProfile) {
-    this.setState({
-      profiles: this.state.profiles.concat(newProfile)
-    })
+  increment() {
+    this.props.store.dispatch(incrementCount())
   }
 
   render() {
-    let profiles = this.state.profiles.map( (profile) => {
-      return (
-        <div>
-          <Profile
-            key = {profile.id}
-            name = {profile.name}
-            age = {profile.age}
-            bio = {profile.bio}
-            hobbies = {profile.hobbies} />
-        </div>
-      )
-    })
-
     return (
       <div>
-        {profiles}
-        <AddProfile add={this.addUser} />
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.increment}>Increase Count</button>
       </div>
     )
   }
