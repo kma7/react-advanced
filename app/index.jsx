@@ -1,40 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Route, Router, hashHistory} from 'react-router'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+import reducer from './reducers'
+import App from './components/App.jsx'
 
-  render() {
-    return (
-      <div>
-        <p>Welcome to Home Page</p>
-      </div>
-    )
-  }
-}
+let store = createStore(reducer)
 
-class About extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div>
-        <p>Welcome to About Page</p>
-      </div>
-    )
-  }
-}
-
-ReactDOM.render((
-  <Router>
-    <div>
-      <Route path='/home' component={Home} />
-      <Route path='/about' component={About} />
-    </div>
-  </Router>
-), document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, document.getElementById('root'));
