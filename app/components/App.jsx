@@ -1,12 +1,15 @@
 import React from 'react'
 
-import CountWidget from '../containers/CountWidgetContainer.jsx'
+import ProductsContainer from '../containers/productsContainer.jsx'
+import ShoppingCartContainer from '../containers/shoppingCartContainer.jsx'
+
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
-        <CountWidget store={this.props.store}/>
+        <ProductsContainer />
+        <ShoppingCartContainer />
       </div>
     )
   }
