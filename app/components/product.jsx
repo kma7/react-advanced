@@ -14,10 +14,25 @@ export default class Product extends React.Component {
 
   render() {
     let {id, name, cost, handleClick} = this.props
+    const style = {
+      text: {
+        margin: '1em',
+        fontWeight: 'bold',
+        color: 'green'
+      },
+      button: {
+        padding: '0.5em',
+        ':hover': {
+          border: '1px solid black'
+        }
+      }
+    }
     return (
-      <div>
-        <h2>{name} ${cost}</h2>
-        <button onClick={() => handleClick(id)}>Add to cart</button>
+      <div style={style.text}>
+        <h3>
+        {name} ${cost}{' '}
+        <button style={style.button}onClick={() => handleClick(id)}>Add to cart</button>
+        </h3>
       </div>
     )
   }

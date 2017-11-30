@@ -5,9 +5,17 @@ import ShoppingCartContainer from '../containers/shoppingCartContainer.jsx'
 
 
 export default class App extends React.Component {
-  render() {
+    render() {
+      const style = {
+        primary: {
+          background: 'grey'
+        },
+        warning: {
+          background: 'yellow'
+        }
+      }
     return (
-      <div>
+      <div style={style.primary}>
         <ProductsContainer />
         <ShoppingCartContainer />
       </div>
